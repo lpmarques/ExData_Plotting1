@@ -2,7 +2,7 @@
 hpc <- read.delim("household_power_consumption.txt",head=T,sep=";")
 hpc <- subset(hpc,as.character(Date)=="1/2/2007"|as.character(Date)=="2/2/2007") # selects data points from 2007-02-01 and 02
 
-# class convertions
+# class conversions
 hpc$dateTime <- with(hpc,strptime(paste(Date,Time),format="%d/%m/%Y %H:%M:%S")) # time and date to single POSIXct format
 hpc <- as.data.frame(sapply(hpc[,3:dim(hpc)[2]],function(col){if(is.factor(col)){return(as.numeric(as.character(col)))}else{return(col)}})) # remaining variables to numeric
 
